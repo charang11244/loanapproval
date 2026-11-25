@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loan Approval Prediction System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body class="bg-light-canvas">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary-bank" href="/">Loan Approval System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#loan-form">Application Form</a></li>
+            <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+            <li class="nav-item">
+              <a class="btn btn-primary btn-sm px-3 ms-lg-2" href="#loan-form">Start Prediction</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="py-5 bg-white border-bottom">
+      <div class="container py-3">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <p class="text-uppercase small fw-semibold text-primary mb-2">Machine Learning Underwriting</p>
+            <h1 class="display-5 fw-bold text-slate-900 mb-3">Loan Approval Prediction System</h1>
+            <p class="lead text-secondary mb-4">
+              Evaluate residential and personal loan eligibility instantly using a trained Scikit-learn classification pipeline built on historical applicant credit, income, and property metrics.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#loan-form" class="btn btn-primary btn-lg px-4">Start Prediction</a>
+              <a href="/dashboard" class="btn btn-outline-secondary btn-lg px-4">View Dashboard</a>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="card border shadow-sm p-4 bg-slate-50">
+              <h5 class="fw-semibold mb-3">Active Model Summary</h5>
+              <ul class="list-unstyled mb-0 small text-secondary d-grid gap-2">
+                <li class="d-flex justify-content-between"><span>Selected Algorithm</span><strong class="text-dark">{{ model_name }}</strong></li>
+                <li class="d-flex justify-content-between"><span>Training Dataset</span><strong class="text-dark">{{ dataset_summary.total_rows }} records</strong></li>
+                <li class="d-flex justify-content-between"><span>Historical Approvals</span><strong class="text-dark">{{ dataset_summary.approved_rows }}</strong></li>
+                <li class="d-flex justify-content-between"><span>Historical Rejections</span><strong class="text-dark">{{ dataset_summary.rejected_rows }}</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container py-5" id="loan-form">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card border shadow-sm p-4 p-md-5 bg-white">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+              <div>
+                <h2 class="h4 fw-bold mb-1">Loan Application Form</h2>
+                <p class="text-secondary small mb-0">Enter all applicant details below for real-time machine learning evaluation.</p>
+              </div>
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-primary btn-sm" id="fillSampleApprove">Sample Approved</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="fillSampleReject">Sample High-Risk</button>
+              </div>
+            </div>
+
+            {% if errors %}
+            <div class="alert alert-danger" role="alert">
+              <strong>Please correct the following errors:</strong>
+              <ul class="mb-0 mt-1">
+                {% for err in errors %}
+                <li>{{ err }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            <form id="predictionForm" action="/predict" method="POST" novalidate>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Gender">Gender</label>
+                  <select class="form-select" id="Gender" name="Gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male" {% if form_data.get('Gender') == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if form_data.get('Gender') == 'Female' %}selected{% endif %}>Female</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Married">Marital Status</label>
+                  <select class="form-select" id="Married" name="Married" required>
+                    <option value="">Select Marital Status</option>
+                    <option value="Yes" {% if form_data.get('Married') == 'Yes' %}selected{% endif %}>Yes (Married)</option>
+                    <option value="No" {% if form_data.get('Married') == 'No' %}selected{% endif %}>No (Single)</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Dependents">Number of Dependents</label>
+                  <select class="form-select" id="Dependents" name="Dependents" required>
+                    <option value="">Select Dependents</option>
+                    <option value="0" {% if form_data.get('Dependents') == '0' %}selected{% endif %}>0</option>
+                    <option value="1" {% if form_data.get('Dependents') == '1' %}selected{% endif %}>1</option>
+                    <option value="2" {% if form_data.get('Dependents') == '2' %}selected{% endif %}>2</option>
+                    <option value="3+" {% if form_data.get('Dependents') == '3+' %}selected{% endif %}>3+</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Education">Education</label>
+                  <select class="form-select" id="Education" name="Education" required>
+                    <option value="">Select Education</option>
+                    <option value="Graduate" {% if form_data.get('Education') == 'Graduate' %}selected{% endif %}>Graduate</option>
+                    <option value="Not Graduate" {% if form_data.get('Education') == 'Not Graduate' %}selected{% endif %}>Not Graduate</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Self_Employed">Self Employed</label>
+                  <select class="form-select" id="Self_Employed" name="Self_Employed" required>
+                    <option value="">Select Employment</option>
+                    <option value="No" {% if form_data.get('Self_Employed') == 'No' %}selected{% endif %}>No (Salaried)</option>
+                    <option value="Yes" {% if form_data.get('Self_Employed') == 'Yes' %}selected{% endif %}>Yes (Self Employed)</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Property_Area">Property Area</label>
+                  <select class="form-select" id="Property_Area" name="Property_Area" required>
+                    <option value="">Select Property Area</option>
+                    <option value="Urban" {% if form_data.get('Property_Area') == 'Urban' %}selected{% endif %}>Urban</option>
+                    <option value="Semiurban" {% if form_data.get('Property_Area') == 'Semiurban' %}selected{% endif %}>Semiurban</option>
+                    <option value="Rural" {% if form_data.get('Property_Area') == 'Rural' %}selected{% endif %}>Rural</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-medium" for="ApplicantIncome">Applicant Monthly Income ($)</label>
+                  <input type="number" min="0" step="50" class="form-control" id="ApplicantIncome" name="ApplicantIncome" value="{{ form_data.get('ApplicantIncome', '') }}" placeholder="e.g., 5500" required />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-medium" for="CoapplicantIncome">Co-applicant Monthly Income ($)</label>
+                  <input type="number" min="0" step="50" class="form-control" id="CoapplicantIncome" name="CoapplicantIncome" value="{{ form_data.get('CoapplicantIncome', '0') }}" placeholder="e.g., 1500" required />
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="LoanAmount">Loan Amount (in $1,000s)</label>
+                  <input type="number" min="1" step="1" class="form-control" id="LoanAmount" name="LoanAmount" value="{{ form_data.get('LoanAmount', '') }}" placeholder="e.g., 150 for $150,000" required />
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Loan_Amount_Term">Loan Amount Term (Months)</label>
+                  <select class="form-select" id="Loan_Amount_Term" name="Loan_Amount_Term" required>
+                    <option value="">Select Term</option>
+                    {% for term in [360, 300, 240, 180, 120, 84, 60, 36, 12] %}
+                    <option value="{{ term }}" {% if form_data.get('Loan_Amount_Term') == term|string %}selected{% endif %}>{{ term }} months</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label fw-medium" for="Credit_History">Credit History</label>
+                  <select class="form-select" id="Credit_History" name="Credit_History" required>
+                    <option value="">Select Credit History</option>
+                    <option value="1" {% if form_data.get('Credit_History') == '1' %}selected{% endif %}>1 - Good Credit (Meets Guidelines)</option>
+                    <option value="0" {% if form_data.get('Credit_History') == '0' %}selected{% endif %}>0 - Poor / No Credit History</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-top d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div class="small text-secondary" id="emiPreview">Enter income and loan details to preview estimated monthly installment.</div>
+                <div class="d-flex gap-2">
+                  <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary px-4">Predict Loan Status</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

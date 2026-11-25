@@ -1,0 +1,30 @@
+:root {
+  --bank-blue: #1e3a8a;
+  --bank-accent: #2563eb;
+  --light-canvas: #f8fafc;
+}
+
+body.bg-light-canvas {
+  background-color: var(--light-canvas);
+  color: #0f172a;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.text-primary-bank {
+  color: var(--bank-blue) !important;
+}
+
+.btn-primary {
+  background-color: var(--bank-accent);
+  border-color: var(--bank-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--bank-blue);
+  border-color: var(--bank-blue);
+}
+
+.card {
+  border-radius: 10px;
+  border-color: #e2e8f0;
+}

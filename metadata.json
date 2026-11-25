@@ -1,0 +1,6 @@
+{
+  "name": "Loan Approval Prediction System",
+  "description": "Machine learning-powered banking loan eligibility prediction system with exploratory data analysis, model evaluation, and live application analytics dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

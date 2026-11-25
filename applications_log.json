@@ -1,0 +1,402 @@
+[
+  {
+    "id": "LN-1048",
+    "timestamp": "2026-11-25T17:59:39.730Z",
+    "input": {
+      "Gender": "Male",
+      "Married": "Yes",
+      "Dependents": "1",
+      "Education": "Not Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 3100,
+      "CoapplicantIncome": 950,
+      "LoanAmount": 220,
+      "Loan_Amount_Term": 180,
+      "Credit_History": 0,
+      "Property_Area": "Rural"
+    },
+    "prediction": "REJECTED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 3,
+    "totalIncome": 4050,
+    "estimatedMonthlyEmi": 2166,
+    "debtToIncomePct": 53.5,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "negative",
+        "detail": "Missing or adverse credit repayment history (Credit History = 0). Primary weighted feature (Credit History) shifted log-odds by -3.02."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "negative",
+        "detail": "Estimated monthly EMI of $2,166 represents 53.5% of $4,050 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "negative",
+        "detail": "Rural collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "neutral",
+        "detail": "Not Graduate · Salaried employment."
+      }
+    ]
+  },
+  {
+    "id": "LN-1047",
+    "timestamp": "2026-11-25T17:17:39.730Z",
+    "input": {
+      "Gender": "Female",
+      "Married": "No",
+      "Dependents": "1",
+      "Education": "Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 4600,
+      "CoapplicantIncome": 1200,
+      "LoanAmount": 125,
+      "Loan_Amount_Term": 240,
+      "Credit_History": 1,
+      "Property_Area": "Semiurban"
+    },
+    "prediction": "APPROVED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 89,
+    "totalIncome": 5800,
+    "estimatedMonthlyEmi": 1085,
+    "debtToIncomePct": 18.7,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "positive",
+        "detail": "Meets historical repayment guidelines (Credit History = 1). Primary weighted feature (Credit History) shifted log-odds by +0.48."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "positive",
+        "detail": "Estimated monthly EMI of $1,085 represents 18.7% of $5,800 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "positive",
+        "detail": "Semiurban collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "positive",
+        "detail": "Graduate · Salaried employment."
+      }
+    ]
+  },
+  {
+    "id": "LN-1046",
+    "timestamp": "2026-11-25T16:35:39.730Z",
+    "input": {
+      "Gender": "Male",
+      "Married": "Yes",
+      "Dependents": "3+",
+      "Education": "Graduate",
+      "Self_Employed": "Yes",
+      "ApplicantIncome": 9200,
+      "CoapplicantIncome": 1800,
+      "LoanAmount": 240,
+      "Loan_Amount_Term": 360,
+      "Credit_History": 1,
+      "Property_Area": "Urban"
+    },
+    "prediction": "APPROVED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 88.3,
+    "totalIncome": 11000,
+    "estimatedMonthlyEmi": 1845,
+    "debtToIncomePct": 16.8,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "positive",
+        "detail": "Meets historical repayment guidelines (Credit History = 1). Primary weighted feature (Estimated DTI) shifted log-odds by +0.54."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "positive",
+        "detail": "Estimated monthly EMI of $1,845 represents 16.8% of $11,000 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "neutral",
+        "detail": "Urban collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "positive",
+        "detail": "Graduate · Self-employed."
+      }
+    ]
+  },
+  {
+    "id": "LN-1045",
+    "timestamp": "2026-11-25T15:53:39.730Z",
+    "input": {
+      "Gender": "Male",
+      "Married": "No",
+      "Dependents": "0",
+      "Education": "Not Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 2400,
+      "CoapplicantIncome": 0,
+      "LoanAmount": 140,
+      "Loan_Amount_Term": 360,
+      "Credit_History": 0,
+      "Property_Area": "Urban"
+    },
+    "prediction": "REJECTED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 4.6,
+    "totalIncome": 2400,
+    "estimatedMonthlyEmi": 1076,
+    "debtToIncomePct": 44.9,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "negative",
+        "detail": "Missing or adverse credit repayment history (Credit History = 0). Primary weighted feature (Credit History) shifted log-odds by -3.02."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "neutral",
+        "detail": "Estimated monthly EMI of $1,076 represents 44.9% of $2,400 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "neutral",
+        "detail": "Urban collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "neutral",
+        "detail": "Not Graduate · Salaried employment."
+      }
+    ]
+  },
+  {
+    "id": "LN-1044",
+    "timestamp": "2026-11-25T15:11:39.730Z",
+    "input": {
+      "Gender": "Female",
+      "Married": "Yes",
+      "Dependents": "0",
+      "Education": "Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 7800,
+      "CoapplicantIncome": 3100,
+      "LoanAmount": 210,
+      "Loan_Amount_Term": 360,
+      "Credit_History": 1,
+      "Property_Area": "Semiurban"
+    },
+    "prediction": "APPROVED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 90.8,
+    "totalIncome": 10900,
+    "estimatedMonthlyEmi": 1615,
+    "debtToIncomePct": 14.8,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "positive",
+        "detail": "Meets historical repayment guidelines (Credit History = 1). Primary weighted feature (Estimated DTI) shifted log-odds by +0.60."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "positive",
+        "detail": "Estimated monthly EMI of $1,615 represents 14.8% of $10,900 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "positive",
+        "detail": "Semiurban collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "positive",
+        "detail": "Graduate · Salaried employment."
+      }
+    ]
+  },
+  {
+    "id": "LN-1043",
+    "timestamp": "2026-11-25T14:29:39.730Z",
+    "input": {
+      "Gender": "Male",
+      "Married": "Yes",
+      "Dependents": "2",
+      "Education": "Not Graduate",
+      "Self_Employed": "Yes",
+      "ApplicantIncome": 2800,
+      "CoapplicantIncome": 600,
+      "LoanAmount": 185,
+      "Loan_Amount_Term": 180,
+      "Credit_History": 0,
+      "Property_Area": "Rural"
+    },
+    "prediction": "REJECTED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 2.3,
+    "totalIncome": 3400,
+    "estimatedMonthlyEmi": 1822,
+    "debtToIncomePct": 53.6,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "negative",
+        "detail": "Missing or adverse credit repayment history (Credit History = 0). Primary weighted feature (Credit History) shifted log-odds by -3.02."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "negative",
+        "detail": "Estimated monthly EMI of $1,822 represents 53.6% of $3,400 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "negative",
+        "detail": "Rural collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "neutral",
+        "detail": "Not Graduate · Self-employed."
+      }
+    ]
+  },
+  {
+    "id": "LN-1042",
+    "timestamp": "2026-11-25T13:47:39.730Z",
+    "input": {
+      "Gender": "Female",
+      "Married": "No",
+      "Dependents": "0",
+      "Education": "Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 5200,
+      "CoapplicantIncome": 0,
+      "LoanAmount": 110,
+      "Loan_Amount_Term": 360,
+      "Credit_History": 1,
+      "Property_Area": "Urban"
+    },
+    "prediction": "APPROVED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 87.8,
+    "totalIncome": 5200,
+    "estimatedMonthlyEmi": 846,
+    "debtToIncomePct": 16.3,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "positive",
+        "detail": "Meets historical repayment guidelines (Credit History = 1). Primary weighted feature (Estimated DTI) shifted log-odds by +0.56."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "positive",
+        "detail": "Estimated monthly EMI of $846 represents 16.3% of $5,200 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "neutral",
+        "detail": "Urban collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "positive",
+        "detail": "Graduate · Salaried employment."
+      }
+    ]
+  },
+  {
+    "id": "LN-1041",
+    "timestamp": "2026-11-25T13:05:39.730Z",
+    "input": {
+      "Gender": "Male",
+      "Married": "Yes",
+      "Dependents": "1",
+      "Education": "Graduate",
+      "Self_Employed": "No",
+      "ApplicantIncome": 6400,
+      "CoapplicantIncome": 2100,
+      "LoanAmount": 155,
+      "Loan_Amount_Term": 360,
+      "Credit_History": 1,
+      "Property_Area": "Semiurban"
+    },
+    "prediction": "APPROVED",
+    "modelName": "Logistic Regression",
+    "supportsCalibratedProbability": true,
+    "calibratedProbabilityPct": 91.4,
+    "totalIncome": 8500,
+    "estimatedMonthlyEmi": 1192,
+    "debtToIncomePct": 14,
+    "factors": [
+      {
+        "feature": "Credit_History",
+        "label": "Credit History",
+        "impact": "positive",
+        "detail": "Meets historical repayment guidelines (Credit History = 1). Primary weighted feature (Estimated DTI) shifted log-odds by +0.63."
+      },
+      {
+        "feature": "Estimated_DTI",
+        "label": "Debt-to-Income Ratio",
+        "impact": "positive",
+        "detail": "Estimated monthly EMI of $1,192 represents 14% of $8,500 total monthly income."
+      },
+      {
+        "feature": "Property_Area",
+        "label": "Property Location",
+        "impact": "positive",
+        "detail": "Semiurban collateral market segment."
+      },
+      {
+        "feature": "Education",
+        "label": "Education & Stability",
+        "impact": "positive",
+        "detail": "Graduate · Salaried employment."
+      }
+    ]
+  }
+]
